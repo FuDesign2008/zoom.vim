@@ -41,7 +41,7 @@ function! s:ZoomReset()
 endfunction
 
 
-function! s:RandomFont
+function! s:RandomFont()
     if exists("g:zoom_favorite_fonts")
         let remainder = localtime() % len(g:zoom_favorite_fonts)
         let value = get(g:zoom_favorite_fonts, remainder, '')
