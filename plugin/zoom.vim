@@ -12,7 +12,7 @@ function! s:getFontSize(str)
     return substitute(a:str, '^.*:h\([^:]*\).*$', '\1', '')
 endfunction
 
-function s:setFontSize(size)
+function! s:setFontSize(size)
     let value = substitute(&guifont, ':h\([^:]*\)', ':h' . a:size, '')
     let &guifont = value
 endfunction
