@@ -65,9 +65,9 @@ if exists('g:zoom_random_font') && g:zoom_random_font
 endif
 
 if exists('g:zoom_key_map') && g:zoom_key_map
-    nnoremap = :ZoomIn<CR>
-    nnoremap - :ZoomOut<CR>
-    nnoremap 0 :ZoomReset<CR>
+    nnoremap <Leader>= :ZoomIn<CR>
+    nnoremap <leader>- :ZoomOut<CR>
+    nnoremap <leader>0 :ZoomReset<CR>
 endif
 
 

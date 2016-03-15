@@ -22,6 +22,6 @@ This plugin is for GUI only.
 
 The following key map is available if `g:zoom_key_map` is `1`
 
-* `=`  zoom in
-* `-`  zoom out
-* `0`  reset font size
+* `<leader>=`  zoom in
+* `<leader>-`  zoom out
+* `<leader>0`  reset font size
