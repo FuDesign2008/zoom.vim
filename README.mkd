@@ -3,14 +3,14 @@
 This plugin is for GUI only.
 
 
-##Configuration
+## Configuration
 
 * `g:zoom_favorite_fonts`  a list of favorite fonts
 * `g:zoom_key_map`  use default key map or not, default is `0`
 * `g:zoom_random_font`  use random gui font or not when boot, default is `0`
 
 
-##Commands
+## Commands
 
 * `:ZoomIn`  change font size bigger
 * `:ZoomOut`  change font size smaller
@@ -18,7 +18,7 @@ This plugin is for GUI only.
 * `:RandomFont`  set the `guifont` from `g:zoom_favorite_fonts`
 
 
-##Key Map
+## Key Map
 
 The following key map is available if `g:zoom_key_map` is `1`
 
