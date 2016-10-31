@@ -1,5 +1,5 @@
 
-if &cp || exists("g:loaded_zoom")
+if &cp || exists('g:loaded_zoom')
     finish
 endif
 
@@ -42,10 +42,10 @@ endfunction
 
 
 function! s:RandomFont()
-    if exists("g:zoom_favorite_fonts")
+    if exists('g:zoom_favorite_fonts')
         let remainder = localtime() % len(g:zoom_favorite_fonts)
         let value = get(g:zoom_favorite_fonts, remainder, '')
-        if value == ''
+        if value ==# ''
             return
         endif
         let s:default_font_size = s:getFontSize(value)
