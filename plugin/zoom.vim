@@ -71,11 +71,23 @@ function! s:RandomInt(max)
     return s:RandomNumber(a:max)
 endfunction
 
-"@param {List} theList should be unique
+function! s:uniqueList(list)
+    let newList = []
+
+    for item in a:list
+        if index(newList, item) == -1
+            call add(newList, item)
+        endif
+    endfor
+
+    return newList
+endfunction
+
+"@param {List} theList
 "@return {List}
 function! s:RandomOrder(theList)
 
-    let uniqueArr = uniq(copy(a:theList))
+    let uniqueArr = s:uniqueList(a:theList)
 
     let length = len(uniqueArr)
     let newList = []
