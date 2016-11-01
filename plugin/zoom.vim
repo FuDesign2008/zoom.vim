@@ -41,16 +41,72 @@ function! s:ZoomReset()
 endfunction
 
 
+"==============================================================================
+" RandomNumber is taken from
+" https://github.com/dahu/vim-rng/blob/master/plugin/rng.vim
+"==============================================================================
+let s:m_w = 1 + getpid()
+let s:m_z = localtime()
+
+" not sure of the wisdom of generating a full 32-bit RN here
+" and then using abs() on the sucker. Feedback welcome.
+function! s:RandomNumber(...)
+  if a:0 == 0
+    let s:m_z = (36969 * and(s:m_z, 0xffff)) + (s:m_z / 65536)
+    let s:m_w = (18000 * and(s:m_w, 0xffff)) + (s:m_w / 65536)
+    return (s:m_z * 65536) + s:m_w      " 32-bit result
+  elseif a:0 == 1 " We return a number in [0, a:1] or [a:1, 0]
+    return a:1 < 0 ? s:RandomNumber(a:1,0) : s:RandomNumber(0,a:1)
+  else " if a:2 >= 2
+    return abs(s:RandomNumber()) % (abs(a:2 - a:1) + 1) + a:1
+  endif
+endfunction
+" end RNG }}}
+"============
+
+
+"@param {Integer} max
+"@return {Integer} return a integer between [0, max - 1]
+function! s:RandomInt(max)
+    return s:RandomNumber(a:max)
+endfunction
+
+"@param {List}
+"@return {List}
+function! s:RandomOrder(theList)
+    let length = len(a:theList)
+    let newList = []
+    let counter = 0
+
+    while counter < length
+        let index = s:RandomInt(length)
+        let item = get(a:theList, index)
+
+        while index(newList, item) != -1
+            let index = s:RandomInt(length)
+            let item = get(a:theList, index)
+        endwhile
+
+        call add(newList, item)
+        let counter = counter + 1
+    endwhile
+
+    return newList
+endfunction
+
+let s:favoriteFontsWithRandom = []
 function! s:RandomFont()
-    if exists('g:zoom_favorite_fonts')
-        let remainder = localtime() % len(g:zoom_favorite_fonts)
-        let value = get(g:zoom_favorite_fonts, remainder, '')
-        if value ==# ''
-            return
-        endif
-        let s:default_font_size = s:getFontSize(value)
-        let &guifont = value
+    if exists('g:zoom_favorite_fonts') && empty(s:favoriteFontsWithRandom)
+        let s:favoriteFontsWithRandom = s:RandomOrder(g:zoom_favorite_fonts)
     endif
+
+    if empty(s:favoriteFontsWithRandom)
+        return
+    endif
+
+    let item = remove(s:favoriteFontsWithRandom, 0)
+    let s:default_font_size = s:getFontSize(item)
+    let &guifont = item
 endfunction
 
 
