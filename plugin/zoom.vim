@@ -71,20 +71,23 @@ function! s:RandomInt(max)
     return s:RandomNumber(a:max)
 endfunction
 
-"@param {List}
+"@param {List} theList should be unique
 "@return {List}
 function! s:RandomOrder(theList)
-    let length = len(a:theList)
+
+    let uniqueArr = uniq(copy(a:theList))
+
+    let length = len(uniqueArr)
     let newList = []
     let counter = 0
 
     while counter < length
         let index = s:RandomInt(length)
-        let item = get(a:theList, index)
+        let item = get(uniqueArr, index)
 
         while index(newList, item) != -1
             let index = s:RandomInt(length)
-            let item = get(a:theList, index)
+            let item = get(uniqueArr, index)
         endwhile
 
         call add(newList, item)
