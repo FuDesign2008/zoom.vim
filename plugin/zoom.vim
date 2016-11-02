@@ -85,9 +85,12 @@ endfunction
 
 "@param {List} theList
 "@return {List}
-function! s:RandomOrder(theList)
-
-    let uniqueArr = s:uniqueList(a:theList)
+function! s:RandomOrder(theList, isUnique)
+    if a:isUnique
+        let uniqueArr = a:theList
+    else
+        let uniqueArr = s:uniqueList(a:theList)
+    endif
 
     let length = len(uniqueArr)
     let newList = []
@@ -112,7 +115,7 @@ endfunction
 let s:favoriteFontsWithRandom = []
 function! s:RandomFont()
     if exists('g:zoom_favorite_fonts') && empty(s:favoriteFontsWithRandom)
-        let s:favoriteFontsWithRandom = s:RandomOrder(g:zoom_favorite_fonts)
+        let s:favoriteFontsWithRandom = s:RandomOrder(g:zoom_favorite_fonts, 0)
     endif
 
     if empty(s:favoriteFontsWithRandom)
