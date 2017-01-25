@@ -12,8 +12,10 @@ This plugin is for GUI only.
 
 ## Commands
 
-* `:ZoomIn`  change font size bigger
-* `:ZoomOut`  change font size smaller
+* `:ZoomIn <step>`  change font size bigger
+* `:ZoomOut <step>`  change font size smaller
+* `:ZoomInStrongly`  change font size bigger, equals `:ZoomIn 4`
+* `:ZoomOutStrongly`  change font size smaller, equals `:ZoomOut 4`
 * `:ZoomReset`  reset font size changes
 * `:RandomFont`  set the `guifont` from `g:zoom_favorite_fonts`
 

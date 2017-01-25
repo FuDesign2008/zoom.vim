@@ -21,17 +21,25 @@ endfunction
 " keep default value
 let s:default_font_size = s:getFontSize(&guifont)
 
-" guifont size + 1
-function! s:ZoomIn()
+" @param {Integer} [step = 1]
+function! s:ZoomIn(step)
+    let stepInt = a:step + 0
+    if stepInt < 1
+        let stepInt = 1
+    endif
     let size = s:getFontSize(&guifont)
-    let size += 1
+    let size += stepInt
     call s:setFontSize(size)
 endfunction
 
-" guifont size - 1
-function! s:ZoomOut()
+" @param {Integer} [step = 1]
+function! s:ZoomOut(step)
+    let stepInt = a:step + 0
+    if stepInt < 1
+        let stepInt = 1
+    endif
     let size = s:getFontSize(&guifont)
-    let size -= 1
+    let size -= stepInt
     call s:setFontSize(size)
 endfunction
 
@@ -128,10 +136,21 @@ function! s:RandomFont()
 endfunction
 
 
+function! s:ZoomInStrongly()
+    call s:ZoomIn(4)
+endfunction
+
+function! s:ZoomOutStrongly()
+    call s:ZoomOut(4)
+endfunction
+
+
 " command
-command! -narg=0 ZoomIn         :call s:ZoomIn()
-command! -narg=0 ZoomOut        :call s:ZoomOut()
+command! -narg=? ZoomIn         :call s:ZoomIn(<args>)
+command! -narg=? ZoomOut        :call s:ZoomOut(<args>)
 command! -narg=0 ZoomReset      :call s:ZoomReset()
+command! -narg=0 ZoomInStrongly     :call s:ZoomInStrongly()
+command! -narg=0 ZoomOutStrongly    :call s:ZoomOutStrongly()
 command! -narg=0 RandomFont     :call s:RandomFont()
 
 if exists('g:zoom_random_font') && g:zoom_random_font
