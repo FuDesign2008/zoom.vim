@@ -2,28 +2,28 @@
 
 This plugin is for GUI only.
 
-
 ## Configuration
 
-* `g:zoom_favorite_fonts`  a list of favorite fonts
-* `g:zoom_key_map`  use default key map or not, default is `0`
-* `g:zoom_random_font`  use random gui font or not when boot, default is `0`
-
+-   `g:zoom_key_map` use default key map or not, default is `0`
 
 ## Commands
 
-* `:ZoomIn <step>`  change font size bigger
-* `:ZoomOut <step>`  change font size smaller
-* `:ZoomInStrongly`  change font size bigger, equals `:ZoomIn 4`
-* `:ZoomOutStrongly`  change font size smaller, equals `:ZoomOut 4`
-* `:ZoomReset`  reset font size changes
-* `:RandomFont`  set the `guifont` from `g:zoom_favorite_fonts`
-
+-   `:ZoomIn <step>` change font size bigger
+-   `:ZoomOut <step>` change font size smaller
+-   `:ZoomInStrongly` change font size bigger, equals `:ZoomIn 4`
+-   `:ZoomOutStrongly` change font size smaller, equals `:ZoomOut 4`
+-   `:ZoomReset` reset font size changes
 
 ## Key Map
 
 The following key map is available if `g:zoom_key_map` is `1`
 
-* `<leader>=`  zoom in
-* `<leader>-`  zoom out
-* `<leader>0`  reset font size
+-   `<leader>=` zoom in
+-   `<leader>-` zoom out
+-   `<leader>0` reset font size
+
+## Change Log
+
+-   2020-04-22
+    -   Remove `:RandomFont`, `g:zoom_favorite_fonts` and `g:zoom_random_font`
+    -   Use `:RandomFont` provided by https://github.com/FuDesign2008/randomTheme.vim
